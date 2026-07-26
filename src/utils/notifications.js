@@ -54,9 +54,9 @@ export function scheduleEventReminders(registrations) {
     const eventName = ev.title || 'Event';
     const venue = ev.venue || 'Campus';
 
-    // 24-hour reminder (fire if between 23h and 25h from now)
+    // 24-hour reminder
     const time24h = timeUntil - 24 * 60 * 60 * 1000;
-    if (time24h > 0 && time24h < 25 * 60 * 60 * 1000) {
+    if (time24h > 0) {
       const id24 = setTimeout(() => {
         sendNotification(
           `⏰ Tomorrow: ${eventName}`,
@@ -66,9 +66,9 @@ export function scheduleEventReminders(registrations) {
       scheduledTimers.set(`${reg._id}-24h`, id24);
     }
 
-    // 1-hour reminder (fire if between 55 min and 65 min from now)
+    // 1-hour reminder
     const time1h = timeUntil - 60 * 60 * 1000;
-    if (time1h > 0 && time1h < 65 * 60 * 1000) {
+    if (time1h > 0) {
       const id1h = setTimeout(() => {
         sendNotification(
           `🚀 Starting Soon: ${eventName}`,

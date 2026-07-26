@@ -14,6 +14,7 @@ export default function Home() {
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'calendar'
   const [savedEvents, setSavedEvents] = useState(new Set());
   const [bookmarkLoading, setBookmarkLoading] = useState({});
+  const countdownTimerRef = React.useRef(null);
   const navigate = useNavigate();
   const user = getUser();
 
@@ -25,13 +26,15 @@ export default function Home() {
 
   useEffect(() => {
     if (!featuredEvent?.startAt) return;
-    const timer = setInterval(() => {
+
+    const tick = () => {
       const now = new Date().getTime();
       const eventTime = new Date(featuredEvent.startAt).getTime();
       const distance = eventTime - now;
 
       if (distance < 0) {
         setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        clearInterval(countdownTimerRef.current);
         return;
       }
 
@@ -41,9 +44,12 @@ export default function Home() {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
-    }, 1000);
+    };
 
-    return () => clearInterval(timer);
+    tick(); // run immediately on mount
+    countdownTimerRef.current = setInterval(tick, 1000);
+
+    return () => clearInterval(countdownTimerRef.current);
   }, [featuredEvent]);
 
   const fetchFeaturedEvent = async () => {

@@ -23,8 +23,7 @@ const Dashboard = () => {
 
   const fetchUserAndRegistrations = async () => {
     try {
-      const userStr = localStorage.getItem('user');
-      if (userStr) setUser(JSON.parse(userStr));
+      setUser(getUser());
       const { data } = await api.get('/registrations/me');
       const regs = data || [];
       setRegistrations(regs);

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import api from '../../api';
 import { getUser } from '../../auth';
-import { API_BASE } from '../../api';
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -14,6 +13,7 @@ const EventDetails = () => {
   const [shareLoading, setShareLoading] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareImage, setShareImage] = useState(null);
+  const [copySuccess, setCopySuccess] = useState(false);
   const shareCardRef = useRef(null);
   const navigate = useNavigate();
   const user = getUser();
@@ -80,7 +80,8 @@ const EventDetails = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('Link copied to clipboard!');
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
   };
 
   if (loading) {
@@ -171,8 +172,8 @@ const EventDetails = () => {
               <button onClick={handleWhatsAppShare} className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
                 💬 Share on WhatsApp
               </button>
-              <button onClick={handleCopyLink} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-bold transition-all">
-                🔗 Copy Link
+              <button onClick={handleCopyLink} className={`w-full py-3 rounded-xl font-bold transition-all ${copySuccess ? 'bg-green-100 text-green-700' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}>
+                {copySuccess ? '✅ Copied!' : '🔗 Copy Link'}
               </button>
             </div>
           </div>

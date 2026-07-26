@@ -1,7 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import api from '../../api';
 import { setAuth } from '../../auth';
 import { useNavigate } from 'react-router-dom';
+
+// Precomputed once at module load — avoids re-render flicker
+const STARS = Array.from({ length: 18 }, () => ({
+  top: Math.random() * 100,
+  left: Math.random() * 100,
+  opacity: Math.random() * 0.5 + 0.1,
+  delay: Math.random() * 3,
+}));
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -23,6 +31,7 @@ const Auth = () => {
       if (!token || !user) throw new Error('Invalid auth response');
       setAuth(token, user);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      window.dispatchEvent(new Event('cc-auth-change'));
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Authentication failed');
@@ -88,17 +97,17 @@ const Auth = () => {
         <div className="blob blob-delay absolute w-[360px] h-[360px] rounded-full bg-indigo-500 opacity-20 blur-3xl bottom-0 right-0 pointer-events-none" />
         <div className="blob absolute w-[280px] h-[280px] rounded-full bg-pink-600 opacity-10 blur-3xl top-1/2 left-1/2 -translate-x-1/2 pointer-events-none" style={{ animationDelay: '2s' }} />
 
-        {/* Stars */}
+        {/* Stars — positions are precomputed at module load to prevent flicker */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(18)].map((_, i) => (
+          {STARS.map((star, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 rounded-full bg-white"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.5 + 0.1,
-                animationDelay: `${Math.random() * 3}s`,
+                top: `${star.top}%`,
+                left: `${star.left}%`,
+                opacity: star.opacity,
+                animationDelay: `${star.delay}s`,
               }}
             />
           ))}
@@ -232,7 +241,7 @@ const Auth = () => {
           </div>
 
           <p className="text-center text-white/20 text-xs mt-6">
-            🔒 Secure login · CampusConnect &copy; 2025
+            🔒 Secure login · CampusConnect © {new Date().getFullYear()}
           </p>
         </div>
       </div>

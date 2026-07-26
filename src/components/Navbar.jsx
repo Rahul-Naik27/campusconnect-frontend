@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUser, clearAuth } from '../auth';
 import NotificationBell from './NotificationBell';
@@ -6,14 +6,26 @@ import api from '../api';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = getUser();
+  const [user, setUser] = useState(getUser);
   const navigate = useNavigate();
+
+  // Re-read user from localStorage whenever auth changes
+  useEffect(() => {
+    const syncUser = () => setUser(getUser());
+    window.addEventListener('storage', syncUser);
+    window.addEventListener('cc-auth-change', syncUser);
+    return () => {
+      window.removeEventListener('storage', syncUser);
+      window.removeEventListener('cc-auth-change', syncUser);
+    };
+  }, []);
 
   const handleLogout = () => {
     clearAuth();
     delete api.defaults.headers.common['Authorization'];
+    setUser(null);
+    window.dispatchEvent(new Event('cc-auth-change'));
     navigate('/auth');
-    window.location.reload();
   };
 
   return (
