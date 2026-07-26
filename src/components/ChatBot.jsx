@@ -201,6 +201,7 @@ const ChatBot = () => {
             <button
               className="cc-close"
               onClick={() => setIsOpen(false)}
+              aria-label="Close chat"
               style={{
                 background: "rgba(255,255,255,0.15)",
                 border: "none",
@@ -450,6 +451,7 @@ const ChatBot = () => {
             <button
               onClick={handleSend}
               disabled={isLoading || !input.trim()}
+              aria-label="Send message"
               style={{
                 width: 38,
                 height: 38,
@@ -484,6 +486,7 @@ const ChatBot = () => {
       {/* ── Floating Toggle Button ── */}
       <button
         onClick={() => setIsOpen((p) => !p)}
+        aria-label={isOpen ? "Close CampusConnect Assistant" : "Open CampusConnect Assistant"}
         title="CampusConnect Assistant"
         style={{
           position: "fixed",

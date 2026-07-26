@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;500;600&display=swap');
+        /* Google Fonts loaded globally in index.html */
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
         @keyframes fade-up { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
         .nf-float { animation: float 4s ease-in-out infinite; }

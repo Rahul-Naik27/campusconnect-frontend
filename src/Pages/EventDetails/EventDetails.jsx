@@ -109,7 +109,7 @@ const EventDetails = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;500;600;700&display=swap');
+        /* Google Fonts loaded globally in index.html */
       `}</style>
 
       {/* ── Hidden Share Card (captured by html2canvas) ── */}
@@ -160,7 +160,7 @@ const EventDetails = () => {
           <div className="bg-white rounded-3xl shadow-2xl p-6 max-w-lg w-full" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-xl font-black text-gray-800" style={{fontFamily:'Outfit,sans-serif'}}>Share This Event</h3>
-              <button onClick={() => setShowShareModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl">×</button>
+              <button onClick={() => setShowShareModal(false)} aria-label="Close share modal" className="text-gray-400 hover:text-gray-600 text-2xl">×</button>
             </div>
             {shareImage && (
               <img src={shareImage} alt="Share card" className="w-full rounded-2xl mb-5 shadow-lg" />

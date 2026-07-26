@@ -2,9 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CampusConnect-College Event Management Platform</title>
+
+    <!-- SEO: Title & Description -->
+    <title>CampusConnect — College Event Management Platform</title>
+    <meta name="description" content="CampusConnect is a college event management platform to discover, register, and attend campus events. Get digital tickets, earn badges, and never miss an event." />
+
+    <!-- SEO: Open Graph / Social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CampusConnect — College Event Management Platform" />
+    <meta property="og:description" content="Discover, register, and attend campus events. Get digital tickets with QR codes, earn achievement badges, and chat with an AI assistant." />
+    <meta property="og:url" content="https://campusconnect-frontend-six.vercel.app/" />
+    <meta property="og:site_name" content="CampusConnect" />
+
+    <!-- SEO: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CampusConnect — College Event Management Platform" />
+    <meta name="twitter:description" content="Discover, register, and attend campus events. Get digital tickets with QR codes and earn achievement badges." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Performance: Preconnect to Google Fonts to reduce DNS + handshake time -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Performance + CLS fix: Load Google Fonts here (not via @import inside components).
+      Using font-display=swap avoids invisible text and reduces CLS from font reflow.
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

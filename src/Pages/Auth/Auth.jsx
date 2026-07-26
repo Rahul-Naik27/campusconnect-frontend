@@ -49,7 +49,7 @@ const Auth = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;500;600;700&display=swap');
+        /* Google Fonts loaded globally in index.html */
 
         @keyframes blob-float {
           0%,100% { transform: translate(0,0) scale(1); }
@@ -208,6 +208,7 @@ const Auth = () => {
                     <button
                       type="button"
                       onClick={() => setShowPass(s => !s)}
+                      aria-label="Toggle password visibility"
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/80 transition text-sm"
                     >
                       {showPass ? '🙈' : '👁️'}

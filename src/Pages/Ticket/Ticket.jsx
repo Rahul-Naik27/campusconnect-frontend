@@ -81,7 +81,7 @@ const Ticket = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
+        /* Google Fonts loaded globally in index.html */
         .ticket-font { font-family: 'Outfit', sans-serif; }
         .body-font { font-family: 'Inter', sans-serif; }
         @keyframes checkin-pulse {

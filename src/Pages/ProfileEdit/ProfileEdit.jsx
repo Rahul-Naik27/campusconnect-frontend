@@ -109,7 +109,7 @@ const ProfileEdit = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;500;600;700&display=swap');
+        /* Google Fonts loaded globally in index.html */
         @keyframes fade-up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
         .fade-up { animation: fade-up 0.4s ease-out both; }
         @keyframes toast-in { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }

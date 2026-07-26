@@ -107,7 +107,7 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+        /* Google Fonts loaded globally in index.html */
         
         * {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -259,7 +259,9 @@ export default function Home() {
           <section className="relative z-10 animate-gradient bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white py-24 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9nPjwvc3ZnPg==')]" />
-              <video src="/utsavvid.mp4" className="absolute inset-0 w-full h-full object-cover -z-10" muted autoPlay loop playsInline></video>
+              <video src="/utsavvid.mp4" className="absolute inset-0 w-full h-full object-cover -z-10" muted autoPlay loop playsInline aria-hidden="true">
+                <track kind="captions" src="data:text/vtt,WEBVTT" label="English" default />
+              </video>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -476,6 +478,7 @@ export default function Home() {
                       }`}
                       onClick={(e) => handleBookmark(e, event._id)}
                       title={savedEvents.has(event._id) ? 'Remove bookmark' : 'Save event'}
+                      aria-label={savedEvents.has(event._id) ? 'Remove bookmark' : 'Save event'}
                       disabled={bookmarkLoading[event._id]}
                     >
                       {bookmarkLoading[event._id] ? (

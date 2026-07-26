@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /event/
+Disallow: /admin
+Disallow: /checkin-scanner
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /ticket/
+Disallow: /feedback/
+
+Sitemap: https://campusconnect-frontend-six.vercel.app/sitemap.xml

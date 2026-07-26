@@ -84,7 +84,7 @@ const Dashboard = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
+        /* Google Fonts loaded globally in index.html */
         * { font-family: 'Inter', sans-serif; }
         .heading { font-family: 'Outfit', sans-serif; }
         @keyframes fade-up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }

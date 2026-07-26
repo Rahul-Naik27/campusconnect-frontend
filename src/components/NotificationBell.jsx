@@ -45,6 +45,7 @@ export default function NotificationBell() {
         onClick={() => setOpen(o => !o)}
         className="relative w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200"
         title="Event Reminders"
+        aria-label="Event Reminders"
       >
         <span className="text-xl">🔔</span>
         {count > 0 && (
